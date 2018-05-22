@@ -1,22 +1,33 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
+  array.select do |string|
+    string[0] == "a"
+  end
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
+  array.select do |string|
+   ["a","e","i","o","u"].include?(string[0])
+  end
 end
 
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
+array.each do |item|
+  item != "nil"
+  end
 end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
+  array.delete_if { |item| "nil" }
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
 # ['dog', 'monkey'] becomes ['god', 'yeknom']
 def reverse_every_element_in_array(array)
+   array.map(&:reverse)
 end
 
 # given an array of student names, like ['Bob', 'Dave', 'Clive']
@@ -29,26 +40,34 @@ end
 # discard the first 3 elements of an array,
 # e.g. [1, 2, 3, 4, 5, 6] becomes [4, 5, 6]
 def all_elements_except_first_3(array)
+  array.shift(3)
+  p array
 end
 
 # add an element to the beginning of an array
 def add_element_to_beginning_of_array(array, element)
+  array.unshift(1)
+  p array
 end
 
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
+  array.sort_by { |word| word[-1] }
 end
 
 # cut strings in half, and return the first half, e.g.
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
+  index = (string.size.to_f / 2).ceil
+  string[0, index]
 end
 
 # turn a positive integer into a negative integer. A negative integer
 # stays negative
 def make_numbers_negative(number)
+    number.to_i
 end
 
 # turn an array of numbers into two arrays of numbers, one an array of
@@ -67,29 +86,35 @@ end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
+  array.min {|x,y| x.size <=> y.size}
 end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
+  array.max_by(&:length)
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
 # returns 15
 def total_of_array(array)
+  array.inject(0){|sum, x| sum + x}
 end
 
 # turn an array into itself repeated twice. So [1, 2, 3]
 # becomes [1, 2, 3, 1, 2, 3]
 def double_array(array)
+    array * 2      # another method is array + array
 end
 
 # convert a symbol into a string
 def turn_symbol_into_string(symbol)
+  symbol.to_s
 end
 
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
+  array = inject(&:+) / size
 end
 
 # get all the elements in an array, up until the first element
@@ -97,6 +122,7 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
+  
 end
 
 # turn an array (with an even number of elements) into a hash, by
@@ -127,6 +153,7 @@ end
 # take out all the capital letters from a string
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 def remove_capital_letters_from_string(string)
+  string
 end
 
 # round up a float up and convert it to an Integer,
@@ -223,4 +250,5 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+
 end
